@@ -145,7 +145,7 @@ const CashRegister = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-blue-700 font-medium">Haftalık Gelir</p>
-                <p className="text-3xl font-bold text-blue-900 mt-1">{stats.week_income.toFixed(2)}₺</p>
+                <p className="text-3xl font-bold text-blue-900 mt-1">{Math.round(stats.week_income)}₺</p>
               </div>
               <TrendingUp className="w-10 h-10 text-blue-500" />
             </div>
