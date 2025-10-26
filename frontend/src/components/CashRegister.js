@@ -215,7 +215,7 @@ const CashRegister = () => {
                     </div>
                     <div className="flex items-center gap-4">
                       <span className="text-2xl font-bold text-green-600">
-                        {transaction.amount.toFixed(2)}₺
+                        {Math.round(transaction.amount)}₺
                       </span>
                       <div className="flex gap-2">
                         <Button
