@@ -38,9 +38,10 @@ api_router = APIRouter(prefix="/api")
 def send_sms(to_phone: str, message: str):
     """Send SMS via Twilio"""
     try:
+        import re
         # Format phone number to include +90 if needed
         if not to_phone.startswith('+'):
-            clean_phone = to_phone.replace(/\D/g, '')
+            clean_phone = re.sub(r'\D', '', to_phone)
             if not clean_phone.startswith('90'):
                 to_phone = '+90' + clean_phone
             else:
