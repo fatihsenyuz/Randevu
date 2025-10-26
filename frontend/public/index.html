@@ -48,6 +48,16 @@
                 document.head.appendChild(tailwindScript);
             }
         </script>
+        <script>
+            // Suppress ResizeObserver errors
+            window.addEventListener('error', e => {
+                if (e.message === 'ResizeObserver loop completed with undelivered notifications.' || 
+                    e.message === 'ResizeObserver loop limit exceeded') {
+                    e.stopImmediatePropagation();
+                    return false;
+                }
+            });
+        </script>
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
