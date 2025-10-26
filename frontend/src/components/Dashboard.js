@@ -258,8 +258,8 @@ const Dashboard = ({ appointments, stats, onEditAppointment, onNewAppointment, o
                     </button>
                   </div>
 
-                  <p className="text-sm text-gray-600">
-                    <span className="font-medium">Adres:</span> {appointment.address}
+                  <p className="text-sm text-gray-900 font-medium">
+                    <span className="text-gray-600">Adres:</span> {appointment.address}
                   </p>
 
                   {appointment.notes && (
