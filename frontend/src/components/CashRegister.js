@@ -135,7 +135,7 @@ const CashRegister = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-green-700 font-medium">Bugünkü Gelir</p>
-                <p className="text-3xl font-bold text-green-900 mt-1">{stats.today_income.toFixed(2)}₺</p>
+                <p className="text-3xl font-bold text-green-900 mt-1">{Math.round(stats.today_income)}₺</p>
               </div>
               <DollarSign className="w-10 h-10 text-green-500" />
             </div>
