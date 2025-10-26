@@ -155,6 +155,19 @@ async def create_appointment(appointment: AppointmentCreate):
     if not service:
         raise HTTPException(status_code=404, detail="Hizmet bulunamadı")
     
+    # Check if appointment already exists at the same date and time
+    existing = await db.appointments.find_one({
+        "appointment_date": appointment.appointment_date,
+        "appointment_time": appointment.appointment_time,
+        "status": {"$ne": "İptal"}  # Don't count cancelled appointments
+    })
+    
+    if existing:
+        raise HTTPException(
+            status_code=400, 
+            detail=f"{appointment.appointment_date} tarihinde {appointment.appointment_time} saatinde zaten bir randevu var. Lütfen başka bir saat seçin."
+        )
+    
     appointment_data = appointment.model_dump()
     appointment_data['service_name'] = service['name']
     appointment_data['service_price'] = service['price']
