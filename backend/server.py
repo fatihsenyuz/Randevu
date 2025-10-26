@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional
 import uuid
 from datetime import datetime, timezone, timedelta
+from twilio.rest import Client
 
 
 ROOT_DIR = Path(__file__).parent
@@ -19,11 +20,42 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
+# Twilio SMS Client
+twilio_client = Client(
+    os.environ.get('TWILIO_ACCOUNT_SID'),
+    os.environ.get('TWILIO_AUTH_TOKEN')
+)
+TWILIO_PHONE = os.environ.get('TWILIO_PHONE_NUMBER')
+
 # Create the main app without a prefix
 app = FastAPI()
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
+
+
+# SMS Helper Function
+def send_sms(to_phone: str, message: str):
+    """Send SMS via Twilio"""
+    try:
+        # Format phone number to include +90 if needed
+        if not to_phone.startswith('+'):
+            clean_phone = to_phone.replace(/\D/g, '')
+            if not clean_phone.startswith('90'):
+                to_phone = '+90' + clean_phone
+            else:
+                to_phone = '+' + clean_phone
+        
+        message = twilio_client.messages.create(
+            body=message,
+            from_=TWILIO_PHONE,
+            to=to_phone
+        )
+        logging.info(f"SMS sent to {to_phone}: {message.sid}")
+        return True
+    except Exception as e:
+        logging.error(f"Failed to send SMS to {to_phone}: {str(e)}")
+        return False
 
 
 # Define Models
