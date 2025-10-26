@@ -97,6 +97,11 @@ const Dashboard = ({ appointments, stats, onEditAppointment, onNewAppointment, o
     // Remove all non-digit characters
     let cleanPhone = phone.replace(/\D/g, "");
     
+    // Remove leading 0 if exists (Turkish format)
+    if (cleanPhone.startsWith("0")) {
+      cleanPhone = cleanPhone.substring(1);
+    }
+    
     // Add +90 if not already present
     if (!cleanPhone.startsWith("90")) {
       cleanPhone = "90" + cleanPhone;
