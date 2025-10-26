@@ -293,8 +293,11 @@ async def delete_transaction(transaction_id: str):
 @api_router.get("/stats/dashboard")
 async def get_dashboard_stats():
     from datetime import date, timedelta
+    from zoneinfo import ZoneInfo
     
-    today = date.today().isoformat()
+    # Use Turkey timezone
+    turkey_tz = ZoneInfo("Europe/Istanbul")
+    today = datetime.now(turkey_tz).date().isoformat()
     
     # Today's appointments
     today_appointments = await db.appointments.count_documents({
@@ -312,7 +315,7 @@ async def get_dashboard_stats():
     today_income = sum(t['amount'] for t in today_transactions)
     
     # Week income (last 7 days)
-    week_start = (date.today() - timedelta(days=7)).isoformat()
+    week_start = (datetime.now(turkey_tz).date() - timedelta(days=7)).isoformat()
     week_transactions = await db.transactions.find(
         {"date": {"$gte": week_start}},
         {"_id": 0}
@@ -320,7 +323,7 @@ async def get_dashboard_stats():
     week_income = sum(t['amount'] for t in week_transactions)
     
     # Month income
-    month_start = date.today().replace(day=1).isoformat()
+    month_start = datetime.now(turkey_tz).date().replace(day=1).isoformat()
     month_transactions = await db.transactions.find(
         {"date": {"$gte": month_start}},
         {"_id": 0}
