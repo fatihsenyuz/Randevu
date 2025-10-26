@@ -111,7 +111,7 @@ const Dashboard = ({ appointments, stats, onEditAppointment, onNewAppointment, o
     <div className="space-y-6">
       {/* Stats Cards */}
       {stats && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Card className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
             <div className="flex items-center justify-between">
               <div>
@@ -129,16 +129,6 @@ const Dashboard = ({ appointments, stats, onEditAppointment, onNewAppointment, o
                 <p className="text-3xl font-bold text-green-900 mt-1">{stats.today_completed}</p>
               </div>
               <Check className="w-10 h-10 text-green-500" />
-            </div>
-          </Card>
-          
-          <Card className="p-4 bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-purple-700 font-medium">Bugünkü Gelir</p>
-                <p className="text-3xl font-bold text-purple-900 mt-1">{Math.round(stats.today_income)}₺</p>
-              </div>
-              <div className="text-2xl">💰</div>
             </div>
           </Card>
         </div>
