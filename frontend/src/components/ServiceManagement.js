@@ -127,7 +127,7 @@ const ServiceManagement = ({ services, onRefresh }) => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">{service.name}</h3>
-                  <p className="text-lg font-bold text-blue-600">{service.price.toFixed(2)}₺</p>
+                  <p className="text-lg font-bold text-blue-600">{Math.round(service.price)}₺</p>
                 </div>
               </div>
             </div>
