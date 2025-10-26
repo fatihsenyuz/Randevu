@@ -136,7 +136,7 @@ const Dashboard = ({ appointments, stats, onEditAppointment, onNewAppointment, o
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-purple-700 font-medium">Bugünkü Gelir</p>
-                <p className="text-3xl font-bold text-purple-900 mt-1">{stats.today_income.toFixed(2)}₺</p>
+                <p className="text-3xl font-bold text-purple-900 mt-1">{Math.round(stats.today_income)}₺</p>
               </div>
               <div className="text-2xl">💰</div>
             </div>
