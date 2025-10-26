@@ -194,7 +194,7 @@ const AppointmentForm = ({ services, appointment, onSave, onCancel }) => {
               <SelectContent>
                 {services.map((service) => (
                   <SelectItem key={service.id} value={service.id}>
-                    {service.name} - {service.price}₺
+                    {service.name} - {Math.round(service.price)}₺
                   </SelectItem>
                 ))}
               </SelectContent>
