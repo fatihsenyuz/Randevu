@@ -219,6 +219,25 @@ async def update_appointment(appointment_id: str, appointment_update: Appointmen
     
     update_data = {k: v for k, v in appointment_update.model_dump().items() if v is not None}
     
+    # Check if date/time changed and if there's a conflict
+    if 'appointment_date' in update_data or 'appointment_time' in update_data:
+        check_date = update_data.get('appointment_date', appointment['appointment_date'])
+        check_time = update_data.get('appointment_time', appointment['appointment_time'])
+        
+        # Check if another appointment exists at this time (excluding current appointment and cancelled ones)
+        existing = await db.appointments.find_one({
+            "id": {"$ne": appointment_id},
+            "appointment_date": check_date,
+            "appointment_time": check_time,
+            "status": {"$ne": "İptal"}
+        })
+        
+        if existing:
+            raise HTTPException(
+                status_code=400,
+                detail=f"{check_date} tarihinde {check_time} saatinde zaten bir randevu var. Lütfen başka bir saat seçin."
+            )
+    
     # If service_id changed, update service details
     if 'service_id' in update_data:
         service = await db.services.find_one({"id": update_data['service_id']}, {"_id": 0})
