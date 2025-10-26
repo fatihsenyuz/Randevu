@@ -94,7 +94,14 @@ const Dashboard = ({ appointments, stats, onEditAppointment, onNewAppointment, o
   };
 
   const handleWhatsApp = (phone) => {
-    const cleanPhone = phone.replace(/\D/g, "");
+    // Remove all non-digit characters
+    let cleanPhone = phone.replace(/\D/g, "");
+    
+    // Add +90 if not already present
+    if (!cleanPhone.startsWith("90")) {
+      cleanPhone = "90" + cleanPhone;
+    }
+    
     window.open(`https://wa.me/${cleanPhone}`, "_blank");
   };
 
