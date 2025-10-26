@@ -209,6 +209,11 @@ async def create_appointment(appointment: AppointmentCreate):
     doc = appointment_obj.model_dump()
     doc['created_at'] = doc['created_at'].isoformat()
     await db.appointments.insert_one(doc)
+    
+    # Send SMS notification
+    sms_message = f"Royal Koltuk Yıkama - Randevunuz oluşturuldu!\n\nTarih: {appointment.appointment_date}\nSaat: {appointment.appointment_time}\nHizmet: {service['name']}\n\nBizi tercih ettiğiniz için teşekkür ederiz."
+    send_sms(appointment.phone, sms_message)
+    
     return appointment_obj
 
 @api_router.get("/appointments", response_model=List[Appointment])
