@@ -119,7 +119,8 @@ const AppointmentForm = ({ services, appointment, onSave, onCancel }) => {
       }
       onSave();
     } catch (error) {
-      toast.error("İşlem başarısız");
+      const errorMessage = error.response?.data?.detail || "İşlem başarısız";
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
