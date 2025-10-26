@@ -41,7 +41,14 @@ def send_sms(to_phone: str, message: str):
         import re
         # Format phone number to include +90 if needed
         if not to_phone.startswith('+'):
+            # Remove all non-digit characters
             clean_phone = re.sub(r'\D', '', to_phone)
+            
+            # Remove leading 0 if exists (Turkish format)
+            if clean_phone.startswith('0'):
+                clean_phone = clean_phone[1:]
+            
+            # Add country code if not present
             if not clean_phone.startswith('90'):
                 to_phone = '+90' + clean_phone
             else:
