@@ -166,15 +166,6 @@ const Dashboard = ({ appointments, stats, onEditAppointment, onNewAppointment, o
       {/* View Toggle */}
       <div className="flex gap-2 overflow-x-auto pb-2">
         <Button
-          data-testid="view-today"
-          onClick={() => setView("today")}
-          variant={view === "today" ? "default" : "outline"}
-          className={view === "today" ? "bg-blue-500 hover:bg-blue-600" : ""}
-        >
-          <Calendar className="w-4 h-4 mr-2" />
-          Bugün ({appointments.filter(a => a.appointment_date === today).length})
-        </Button>
-        <Button
           data-testid="view-past"
           onClick={() => setView("past")}
           variant={view === "past" ? "default" : "outline"}
@@ -182,6 +173,15 @@ const Dashboard = ({ appointments, stats, onEditAppointment, onNewAppointment, o
         >
           <ChevronLeft className="w-4 h-4 mr-2" />
           Geçmiş ({appointments.filter(a => a.appointment_date < today).length})
+        </Button>
+        <Button
+          data-testid="view-today"
+          onClick={() => setView("today")}
+          variant={view === "today" ? "default" : "outline"}
+          className={view === "today" ? "bg-blue-500 hover:bg-blue-600" : ""}
+        >
+          <Calendar className="w-4 h-4 mr-2" />
+          Bugün ({appointments.filter(a => a.appointment_date === today).length})
         </Button>
         <Button
           data-testid="view-future"
