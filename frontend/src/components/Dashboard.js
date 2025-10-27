@@ -34,6 +34,7 @@ const Dashboard = ({ appointments, stats, onEditAppointment, onNewAppointment, o
   const [filteredAppointments, setFilteredAppointments] = useState([]);
   const [deleteDialog, setDeleteDialog] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showSearchDialog, setShowSearchDialog] = useState(false);
 
   const today = format(new Date(), "yyyy-MM-dd");
 
