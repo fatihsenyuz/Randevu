@@ -188,17 +188,38 @@ const Dashboard = ({ appointments, stats, onEditAppointment, onNewAppointment, o
         </div>
       </div>
 
-      {/* Search Bar */}
-      <div className="relative">
-        <input
-          data-testid="search-input"
-          type="text"
-          placeholder="Müşteri adı, telefon veya hizmet ara..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        />
-      </div>
+      {/* Search Dialog */}
+      {showSearchDialog && (
+        <Card className="p-4 mb-4 bg-blue-50 border-blue-200">
+          <div className="flex items-center gap-2 mb-2">
+            <Search className="w-4 h-4 text-blue-600" />
+            <h3 className="font-semibold text-gray-900">Ara</h3>
+            <button 
+              onClick={() => {
+                setShowSearchDialog(false);
+                setSearchTerm("");
+              }}
+              className="ml-auto text-gray-500 hover:text-gray-700"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+          <Input
+            data-testid="search-input"
+            type="text"
+            placeholder="Müşteri adı, telefon veya hizmet ara..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full"
+            autoFocus
+          />
+          {searchTerm && (
+            <p className="text-sm text-gray-600 mt-2">
+              {filteredAppointments.length} sonuç bulundu
+            </p>
+          )}
+        </Card>
+      )}
 
       {/* View Toggle */}
       <div className="flex gap-2 overflow-x-auto pb-2">
