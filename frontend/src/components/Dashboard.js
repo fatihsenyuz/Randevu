@@ -155,7 +155,7 @@ const Dashboard = ({ appointments, stats, onEditAppointment, onNewAppointment, o
         </div>
       )}
 
-      {/* Header with Add Button */}
+      {/* Header with Add Button and Menu */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h2 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
@@ -163,13 +163,29 @@ const Dashboard = ({ appointments, stats, onEditAppointment, onNewAppointment, o
           </h2>
           <p className="text-sm text-gray-600 mt-1">Randevularınızı yönetin</p>
         </div>
-        <Button
-          data-testid="add-appointment-button"
-          onClick={onNewAppointment}
-          className="bg-blue-500 hover:bg-blue-600 text-white shadow-md"
-        >
-          + Yeni Randevu
-        </Button>
+        <div className="flex gap-2">
+          <Button
+            data-testid="add-appointment-button"
+            onClick={onNewAppointment}
+            className="bg-blue-500 hover:bg-blue-600 text-white shadow-md"
+          >
+            + Yeni Randevu
+          </Button>
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="icon" data-testid="menu-button">
+                <MoreVertical className="w-4 h-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuItem onClick={() => setShowSearchDialog(true)} data-testid="search-menu-item">
+                <Search className="w-4 h-4 mr-2" />
+                Ara
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
 
       {/* Search Bar */}
