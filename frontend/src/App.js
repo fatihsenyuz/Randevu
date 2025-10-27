@@ -217,6 +217,10 @@ function App() {
           />
         )}
         
+        {currentView === "customers" && (
+          <Customers />
+        )}
+        
         {currentView === "services" && (
           <ServiceManagement
             services={services}
@@ -226,6 +230,16 @@ function App() {
         
         {currentView === "cash" && (
           <CashRegister />
+        )}
+        
+        {currentView === "import" && (
+          <ImportData
+            onImportComplete={() => {
+              loadAppointments();
+              loadStats();
+              toast.success("Veriler yüklendi! Randevular sayfasını kontrol edin.");
+            }}
+          />
         )}
         
         {currentView === "settings" && (
