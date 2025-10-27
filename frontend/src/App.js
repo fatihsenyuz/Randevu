@@ -100,8 +100,10 @@ function App() {
 
   const menuItems = [
     { id: "dashboard", icon: Calendar, label: "Randevular" },
+    { id: "customers", icon: Users, label: "Müşteriler" },
     { id: "services", icon: Briefcase, label: "Hizmetler" },
     { id: "cash", icon: DollarSign, label: "Kasa" },
+    { id: "import", icon: Upload, label: "İçe Aktar" },
     { id: "settings", icon: SettingsIcon, label: "Ayarlar" }
   ];
 
