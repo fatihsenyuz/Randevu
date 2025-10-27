@@ -8,7 +8,9 @@ import AppointmentForm from "@/components/AppointmentForm";
 import ServiceManagement from "@/components/ServiceManagement";
 import CashRegister from "@/components/CashRegister";
 import Settings from "@/components/Settings";
-import { Menu, Calendar, Briefcase, DollarSign, SettingsIcon } from "lucide-react";
+import Customers from "@/components/Customers";
+import ImportData from "@/components/ImportData";
+import { Menu, Calendar, Briefcase, DollarSign, SettingsIcon, Users, Upload } from "lucide-react";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
