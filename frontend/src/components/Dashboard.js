@@ -1,12 +1,20 @@
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
-import { Calendar, Clock, Phone, MessageSquare, Edit, Trash2, Check, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, Clock, Phone, MessageSquare, Edit, Trash2, Check, X, ChevronLeft, ChevronRight, Search, MoreVertical } from "lucide-react";
 import { toast } from "sonner";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
 import {
   AlertDialog,
   AlertDialogAction,
