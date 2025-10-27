@@ -136,19 +136,23 @@ const ImportData = ({ onImportComplete }) => {
             <p className="text-sm text-gray-600 mb-4">
               Randevular.xlsx dosyanızı seçin
             </p>
-            <label>
-              <input
-                type="file"
-                accept=".xlsx,.xls"
-                onChange={(e) => handleFileUpload(e, 'appointments')}
-                disabled={loading}
-                className="hidden"
-                data-testid="appointment-file-input"
-              />
+            <input
+              type="file"
+              accept=".xlsx,.xls"
+              onChange={(e) => handleFileUpload(e, 'appointments')}
+              disabled={loading}
+              className="hidden"
+              id="appointment-file-input"
+              data-testid="appointment-file-input"
+            />
+            <label htmlFor="appointment-file-input">
               <Button
-                as="span"
                 disabled={loading}
                 className="cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('appointment-file-input').click();
+                }}
               >
                 <Upload className="w-4 h-4 mr-2" />
                 {loading ? 'Yükleniyor...' : 'Dosya Seç'}
