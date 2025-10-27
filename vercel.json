@@ -1,9 +1,8 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "main-frontend-public/index.html", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "main-frontend-public/index.html" }
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/main-frontend-public/index.html"
+    }
   ]
 }
